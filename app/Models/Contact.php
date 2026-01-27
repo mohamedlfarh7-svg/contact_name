@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Contact extends Model
+{
+    protected $fillable = ['first_name', 'last_name', 'email', 'phone', 'group_id'];
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
+    public function index(){
+        $contact = \App\Models\Contact::with('group')->get();
+        $groups = \App\Models\Group::all();
+        return view('contact.index',compact('contact','groups'));
+    }
+}
