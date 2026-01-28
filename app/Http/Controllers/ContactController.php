@@ -9,10 +9,12 @@ use App\Models\Group;
 class ContactController extends Controller
 {
 
-    public function index(){
+    public function index(Request $request){
         $contacts = \App\Models\Contact::with('group')->get();
         $groups = \App\Models\Group::all();
         return view('contacts.index',compact('contacts','groups'));
+
+
     }
 
     public function store(Request $request){
