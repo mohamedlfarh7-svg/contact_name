@@ -10,8 +10,18 @@ class ContactController extends Controller
 {
 
     public function index(Request $request){
-        $contacts = \App\Models\Contact::with('group')->get();
-        $groups = \App\Models\Group::all();
+        $query = Contact::with('group');
+        if($request->filled('search')){
+            $search = $request->search;
+            $query->where('first_name','like',"%{$search}%")->orWhere('last_name','like',"%{$search}%");
+        }
+
+        if($request->filled('group_id')){
+            $query->where('group_id',$request->group_id);
+        }
+
+        $contacts = $query->get();
+        $groups = Group::all();
         return view('contacts.index',compact('contacts','groups'));
 
 

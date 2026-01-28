@@ -10,9 +10,10 @@
 
     <div class="max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Contact Management</h1>
-
+        
         <div class="bg-white p-6 rounded-lg shadow-md mb-10">
             <h2 class="text-xl font-semibold mb-4 text-blue-600">Add New Contact</h2>
+            
             <form action="{{ route('contacts.store') }}" method="POST">
                 @csrf
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
