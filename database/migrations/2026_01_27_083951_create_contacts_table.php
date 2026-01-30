@@ -18,7 +18,7 @@ public function up(): void
         $table->string('email');    
         $table->string('phone');    
         
-        $table->foreignId('group_id')->constrained()->onDelete('cascade'); 
+        $table->foreignId('group_id')->nullable()->constrained()->onDelete('set null');
         
         $table->timestamps();
     });
